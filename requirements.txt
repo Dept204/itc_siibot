@@ -1,0 +1,4 @@
+python-telegram-bot==3.4
+requests==2.8.1
+lxml==3.6.0
+pymysql==0.7.2

@@ -9,6 +9,9 @@ Este bot se encuentra corriendo en un server de [**Openshift**](https://www.open
 **La única información que se guarda en este bot son tus datos de acceso, los cuales eres libre de borrar en cualquier momento.**
 
 ### Uso
+
+![demo](https://raw.githubusercontent.com/Dept204/itc_siibot/master/img/bot.PNG)
+
 Una vez iniciada la conversación con el bot, puedes hacer uso de los siguientes comandos:
 #### Comandos explícitos
 Estos requieren un **/** antes del comando y llevan parámetros

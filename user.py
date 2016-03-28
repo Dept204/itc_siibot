@@ -19,7 +19,8 @@ class User:
 
     def show_grades(self):
         sql = SQL()
-        data = sql.function("SELECT user, password FROM user WHERE user_id = '" + str(self.uid) + "'")
+        sql._query_("SELECT user, password FROM user WHERE user_id = '" + str(self.uid) + "'")
+        data = sql.get_last_result()
         self.sii.set_userdata(data['user'], data['password'])
         return self.sii.get_grades()
 
@@ -50,6 +51,6 @@ class User:
         clist = command.split()
         print clist
         if 'grades' in clist:
-            return self.show_grades()
+            return self.show_grades
         else:
             return 'Comando no reconocido'

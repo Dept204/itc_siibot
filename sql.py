@@ -23,7 +23,7 @@ class SQL:
                 cursorclass=self.cursorclass
         )
 
-    def funcion(self, query):
+    def function(self, query):
         self._query_(query)
         return self.get_last_result()[self.result.keys()[0]]
 
@@ -32,20 +32,10 @@ class SQL:
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute(query)
-                self.result = cursor.fetchone()
-        finally:
-            self.connection.close()
-
-    def insert_update(self, query):
-        self._create_connection_()
-        try:
-            with self.connection.cursor() as cursor:
-                cursor.execute(query)
                 self.connection.commit()
                 self.result = cursor.fetchone()
         finally:
             self.connection.close()
-            return self.result[self.result.keys()[0]]
 
     def get_last_result(self):
         return self.result

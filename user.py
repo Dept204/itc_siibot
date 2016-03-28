@@ -15,11 +15,11 @@ class User:
         # Begin with the process
         sql = SQL()
         query = "SELECT registrar(" + str(self.uid) + ", '" + dat['user'] + "','" + dat['password'] + "')"
-        return sql.insert_update(query)
+        return sql.function(query)
 
     def show_grades(self):
         sql = SQL()
-        data = sql.funcion("SELECT user, password FROM user WHERE user_id = '" + str(self.uid) + "'")
+        data = sql.function("SELECT user, password FROM user WHERE user_id = '" + str(self.uid) + "'")
         self.sii.set_userdata(data['user'], data['password'])
         return self.sii.get_grades()
 
@@ -39,12 +39,12 @@ class User:
         else:
             query += ", NULL, NULL)"
         sql = SQL()
-        return sql.funcion(query)
+        return sql.function(query)
 
     def delete(self):
         query = 'SELECT eliminar(' + str(self.uid) + ')'
         sql = SQL()
-        return sql.funcion(query)
+        return sql.function(query)
 
     def command(self, command):
         clist = command.split()

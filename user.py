@@ -49,8 +49,7 @@ class User:
 
     def command(self, command):
         clist = command.split()
-        print clist
         if 'grades' in clist:
-            return self.show_grades
+            return self.show_grades()
         else:
             return 'Comando no reconocido'

@@ -4,7 +4,7 @@ from telegram.ext import Updater
 
 
 def start(bot, update):
-    bot.sendMessage(update.message.chat_id, text="Bienvenido")
+    bot.sendMessage(update.message.chat_id, text="Bot para el SII (No Oficial) del ITC")
 
 
 def main():

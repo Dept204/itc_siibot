@@ -25,8 +25,7 @@ class SQL:
 
     def funcion(self, query):
         self._query_(query)
-        print 'Resultado', type(self.result), self.result
-        return self.get_last_result()
+        return self.get_last_result()[self.result.keys()[0]]
 
     def _query_(self, query):
         self._create_connection_()

@@ -28,7 +28,6 @@ def config_sii(bot, update):
         if data[0] == 'update':
             data = data[1:]
             result = u.update_data(data)
-            send_message(bot, update, result)
         elif data[0] == 'set':
             data = data[1:]
             result = u.register(data)

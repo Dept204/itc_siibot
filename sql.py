@@ -25,6 +25,7 @@ class SQL:
 
     def funcion(self, query):
         self._query_(query)
+        print 'Resultado', type(self.result), self.result
         return self.get_last_result()
 
     def _query_(self, query):

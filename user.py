@@ -15,7 +15,7 @@ class User:
         # Begin with the process
         sql = SQL()
         query = "SELECT registrar(" + str(self.uid) + ", '" + dat['user'] + "','" + dat['password'] + "')"
-        return sql.insert_update(query)
+        return sql.funcion(query)
 
     def show_grades(self):
         sql = SQL()
@@ -44,7 +44,7 @@ class User:
     def delete(self):
         query = 'SELECT eliminar(' + str(self.uid) + ')'
         sql = SQL()
-        return sql.insert_update(query)
+        return sql.funcion(query)
 
     def command(self, command):
         clist = command.split()

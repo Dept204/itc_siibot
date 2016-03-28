@@ -1,4 +1,4 @@
-import pymysql.cursors
+from pymysql import cursors, connect
 import os
 
 
@@ -9,12 +9,12 @@ class SQL:
         self.host = os.environ['OPENSHIFT_MYSQL_DB_HOST']
         self.database = os.environ['OPENSHIFT_APP_NAME']
         self.charset = 'utf8mb4'
-        self.cursorclass = pymysql.cursors.DictCursor
+        self.cursorclass = cursors.DictCursor
         self.connection = None
         self.result = None
 
     def _create_connection_(self):
-        self.connection = pymysql.connect(
+        self.connection = connect(
                 host=self.host,
                 user=self.user,
                 password=self.password,
@@ -45,7 +45,7 @@ class SQL:
                 self.result = cursor.fetchone()
         finally:
             self.connection.close()
-            return self.result
+            return self.result[self.result.keys()[0]]
 
     def get_last_result(self):
         return self.result

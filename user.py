@@ -15,7 +15,7 @@ class User:
         # Begin with the process
         sql = SQL()
         query = "SELECT registrar(" + str(self.uid) + ", '" + dat['user'] + "','" + dat['password'] + "')"
-        return sql.funcion(query)
+        return sql.insert_update(query)
 
     def show_grades(self):
         sql = SQL()

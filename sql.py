@@ -42,9 +42,10 @@ class SQL:
             with self.connection.cursor() as cursor:
                 cursor.execute(query)
                 self.connection.commit()
+                self.result = cursor.fetchone()
         finally:
             self.connection.close()
-            return True
+            return self.result
 
     def get_last_result(self):
         return self.result

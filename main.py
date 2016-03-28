@@ -1,6 +1,7 @@
 # coding=utf-8
 from telegram import InlineQueryResultArticle
 from telegram.ext import Updater
+import os
 
 
 def start(bot, update):
@@ -9,7 +10,7 @@ def start(bot, update):
 
 def main():
     # Create the EventHandler and pass it your bot's token.
-    updater = Updater("")
+    updater = Updater(os.environ['TELEGRAM_BOT_API_KEY'])
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher

@@ -1,7 +1,6 @@
 # coding=utf-8
 from telegram.ext import Updater
 import os
-# Persoanl imports
 from user import User
 # For call
 siitag = '/configsii '

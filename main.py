@@ -55,6 +55,7 @@ def main():
 
     # on different commands - answer in Telegram
     dp.addTelegramCommandHandler("start", start)
+    dp.addTelegramCommandHandler("configsii", config_sii)
 
     # on noncommand i.e message - echo the message on Telegram
     # dp.addTelegramInlineHandler(inlinequery)

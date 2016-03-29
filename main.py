@@ -9,11 +9,13 @@ siitag = '/configsii '
 def start(bot, update):
     bot.sendMessage(update.message.chat_id, text="Bot para el SII (No Oficial) del ITC")
 
+def help(bot, update):
+    reply_markup = ReplyKeyboardMarkup([['/start', '/help'],
+                                            ['/configsii']])
+    bot.sendMessage(update.message.chat_id, text='Ayuda', reply_markup = reply_markup)
 
 def handler(bot, update):
-    if 'help' in update.message.text:
-        pass
-    elif 'sii' in update.message.text:
+    if 'sii' in update.message.text:
         tmpuser = User(update.message.chat_id)
         send_message(bot, update, tmpuser.command(update.message.text.replace('sii ', '')))
     else:
@@ -53,6 +55,7 @@ def main():
 
     # on different commands - answer in Telegram
     dp.addTelegramCommandHandler("start", start)
+    dp.addTelegramCommandHandler("help", help)
     dp.addTelegramCommandHandler("configsii", config_sii)
 
     # on noncommand i.e message - echo the message on Telegram

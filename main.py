@@ -6,8 +6,8 @@ from user import User
 
 # For call
 siitag = '/configsii '
-k = ''
-
+# Keyboards
+k = Keyboards()
 
 def start(bot, update):
     bot.sendMessage(update.message.chat_id, text="Bot para el SII (No Oficial) del ITC")
@@ -54,9 +54,6 @@ def main():
     # Create the EventHandler and pass it your bot's token.
     updater = Updater(os.environ['TELEGRAM_BOT_API_KEY'])
 
-    # Create the keyboard
-    k = Keyboards()
-
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
 
@@ -64,7 +61,7 @@ def main():
     dp.addTelegramCommandHandler("start", start)
     dp.addTelegramCommandHandler("help", help)
     dp.addTelegramCommandHandler("configsii", config_sii)
-    dp.addTelegramCommandHandler("test", k.test_handler)
+    dp.addTelegramCommandHandler("test", Keyboards.test_handler)
 
     # on noncommand i.e message - echo the message on Telegram
     # dp.addTelegramInlineHandler(inlinequery)

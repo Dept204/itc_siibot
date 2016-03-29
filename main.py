@@ -42,7 +42,6 @@ def handler(bot, update):
     else:
         send_message(bot, update,
                      "Para una lista completa de ayuda, escriba <b>help</b>, para ayuda específica sobre un comando, escriba <b>help comando</b>")
-    db.r_message.set(update.message.chat_id, '/start', 3600, xx=True)
 
 
 def config(bot, update):

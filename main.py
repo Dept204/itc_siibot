@@ -74,7 +74,9 @@ def main():
     dp.addTelegramCommandHandler("help", help)
     dp.addTelegramCommandHandler("configsii", config_sii)
     dp.addTelegramCommandHandler("config", config)
-    dp.addTelegramCommandHandler("Datos de acceso", config)
+
+    # commands of keyboards
+    dp.addTelegramMessageHandler("Datos de acceso", config)
 
     # on noncommand i.e message - echo the message on Telegram
     # dp.addTelegramInlineHandler(inlinequery)

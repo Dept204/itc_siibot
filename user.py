@@ -6,6 +6,15 @@ class User:
     def __init__(self, uid):
         self.uid = uid
         self.sii = ITCSII()
+        self.register_status = self._is_registered()
+
+    def _is_registered(self):
+        sql = SQL()
+        sql._query_("SELECT user, password FROM user WHERE user_id = '" + str(self.uid) + "'")
+        data = sql.get_last_result()
+        print data
+        print len(data)
+        return True
 
     def register(self, data):
         # Parse input into dict, so we know all values are correctly specified

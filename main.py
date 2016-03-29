@@ -22,8 +22,14 @@ def handler(bot, update):
     if 'sii' in update.message.text:
         tmpuser = User(update.message.chat_id)
         send_message(bot, update, tmpuser.command(update.message.text.replace('sii ', '')))
-    elif 'Datos de acceso' in update.message.text:
+    elif 'Datos de acceso' == update.message.text:
         show_keyboard(bot, update, k.get_keyboard('config_a'), '¿Qué desea hacer?')
+    elif 'Definir' == update.message.text:
+        pass
+    elif 'Modificar' == update.message.text:
+        pass
+    elif 'Eliminar' == update.message.text:
+        pass
     else:
         send_message(bot, update,
                      "Para una lista completa de ayuda, escriba <b>help</b>, para ayuda específica sobre un comando, escriba <b>help comando</b>")

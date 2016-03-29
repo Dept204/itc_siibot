@@ -6,8 +6,7 @@ from user import User
 
 # For call
 siitag = '/configsii '
-# Keyboards
-k = Keyboards()
+k = ''
 
 
 def start(bot, update):
@@ -54,6 +53,9 @@ def send_message(bot, update, message):
 def main():
     # Create the EventHandler and pass it your bot's token.
     updater = Updater(os.environ['TELEGRAM_BOT_API_KEY'])
+
+    # Create the keyboard
+    k = Keyboards()
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher

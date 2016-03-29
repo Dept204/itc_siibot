@@ -22,6 +22,8 @@ def handler(bot, update):
     if 'sii' in update.message.text:
         tmpuser = User(update.message.chat_id)
         send_message(bot, update, tmpuser.command(update.message.text.replace('sii ', '')))
+    elif 'Datos de acceso' in update.message.text:
+        show_keyboard(bot, update, k.get_keyboard('config_a'), '¿Qué desea hacer?')
     else:
         send_message(bot, update,
                      "Para una lista completa de ayuda, escriba <b>help</b>, para ayuda específica sobre un comando, escriba <b>help comando</b>")
@@ -58,7 +60,7 @@ def send_message(bot, update, message):
     return True
 
 
-def show_keyboard(bot, update, keyboard, text = None):
+def show_keyboard(bot, update, keyboard, text='Elija una opción'):
     bot.sendMessage(update.message.chat_id, text=text, reply_markup=keyboard)
 
 
@@ -74,9 +76,6 @@ def main():
     dp.addTelegramCommandHandler("help", help)
     dp.addTelegramCommandHandler("configsii", config_sii)
     dp.addTelegramCommandHandler("config", config)
-
-    # commands of keyboards
-    dp.addTelegramMessageHandler("Datos de acceso", config)
 
     # on noncommand i.e message - echo the message on Telegram
     # dp.addTelegramInlineHandler(inlinequery)

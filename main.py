@@ -1,8 +1,9 @@
 # coding=utf-8
 from telegram.ext import Updater
-from telegram import ReplyKeyboardMarkup
+from keyboards import Keyboards
 import os
 from user import User
+
 # For call
 siitag = '/configsii '
 
@@ -12,9 +13,8 @@ def start(bot, update):
 
 
 def help(bot, update):
-    reply_markup = ReplyKeyboardMarkup([['/start', '/help'],
-                                            ['/configsii']])
-    bot.sendMessage(update.message.chat_id, text='Ayuda', reply_markup = reply_markup)
+    reply_markup = Keyboards.get_keyboard("basic")
+    bot.sendMessage(update.message.chat_id, text='Ayuda', reply_markup=reply_markup)
 
 
 def handler(bot, update):
@@ -22,7 +22,8 @@ def handler(bot, update):
         tmpuser = User(update.message.chat_id)
         send_message(bot, update, tmpuser.command(update.message.text.replace('sii ', '')))
     else:
-        send_message(bot, update,'Para una lista completa de ayuda, escriba <b>help</b>, para ayuda específica sobre un comando, escriba <b>help comando</b>')
+        send_message(bot, update,
+                     "Para una lista completa de ayuda, escriba <b>help</b>, para ayuda específica sobre un comando, escriba <b>help comando</b>")
 
 
 def config_sii(bot, update):

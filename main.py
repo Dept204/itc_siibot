@@ -9,6 +9,7 @@ siitag = '/configsii '
 # Keyboards
 k = Keyboards()
 
+
 def start(bot, update):
     bot.sendMessage(update.message.chat_id, text="Bot para el SII (No Oficial) del ITC")
 
@@ -24,6 +25,11 @@ def handler(bot, update):
     else:
         send_message(bot, update,
                      "Para una lista completa de ayuda, escriba <b>help</b>, para ayuda específica sobre un comando, escriba <b>help comando</b>")
+
+
+def config(bot, update):
+    show_keyboard(bot, update, k.get_keyboard('config'))
+    print update.message.text
 
 
 def config_sii(bot, update):
@@ -50,6 +56,10 @@ def send_message(bot, update, message):
     return True
 
 
+def show_keyboard(bot, update, keyboard, text = None):
+    bot.sendMessage(update.message.chat_id, text=text, reply_markup=keyboard)
+
+
 def main():
     # Create the EventHandler and pass it your bot's token.
     updater = Updater(os.environ['TELEGRAM_BOT_API_KEY'])
@@ -61,7 +71,7 @@ def main():
     dp.addTelegramCommandHandler("start", start)
     dp.addTelegramCommandHandler("help", help)
     dp.addTelegramCommandHandler("configsii", config_sii)
-    dp.addTelegramCommandHandler("test", Keyboards.test_handler)
+    dp.addTelegramCommandHandler("config", config)
 
     # on noncommand i.e message - echo the message on Telegram
     # dp.addTelegramInlineHandler(inlinequery)

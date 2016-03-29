@@ -1,6 +1,7 @@
 # coding=utf-8
 from telegram.ext import Updater
 from keyboards import Keyboards
+from telegram import ForceReply
 import os
 from user import User
 
@@ -19,14 +20,16 @@ def help(bot, update):
 
 
 def handler(bot, update):
+    tmpuser = User(update.message.chat_id)
     if 'sii' in update.message.text:
-        tmpuser = User(update.message.chat_id)
         send_message(bot, update, tmpuser.command(update.message.text.replace('sii ', '')))
     elif 'Datos de acceso' == update.message.text:
         show_keyboard(bot, update, k.get_keyboard('config_a'), '¿Qué desea hacer?')
     elif 'Definir' == update.message.text:
-        tmp = User(update.message.chat_id)
-        tmp._is_registered()
+        if tmpuser.register_status:
+            send_message(bot, update, 'Usted ya tiene datos definidos.')
+        else:
+            send_message_force(bot, update, 'Ingrese su usuario <i>ej: 12345678</i>')
     elif 'Modificar' == update.message.text:
         pass
     elif 'Eliminar' == update.message.text:
@@ -65,6 +68,10 @@ def config_sii(bot, update):
 def send_message(bot, update, message):
     bot.sendMessage(update.message.chat_id, text=message, parse_mode='HTML')
     return True
+
+
+def send_message_force(bot, update, message):
+    bot.sendMessage(update.message.chat_id, text=message, parse_mode='HTML', force_reply=ForceReply(force_reply=True))
 
 
 def show_keyboard(bot, update, keyboard, text='Elija una opción'):

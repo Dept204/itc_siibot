@@ -12,9 +12,9 @@ class User:
         sql = SQL()
         sql._query_("SELECT user, password FROM user WHERE user_id = '" + str(self.uid) + "'")
         data = sql.get_last_result()
-        print data
-        print len(data)
-        return True
+        if data is not None:
+            return True
+        return False
 
     def register(self, data):
         # Parse input into dict, so we know all values are correctly specified

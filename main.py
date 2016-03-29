@@ -25,7 +25,8 @@ def handler(bot, update):
     elif 'Datos de acceso' == update.message.text:
         show_keyboard(bot, update, k.get_keyboard('config_a'), '¿Qué desea hacer?')
     elif 'Definir' == update.message.text:
-        pass
+        tmp = User(update.message.chat_id)
+        tmp._is_registered()
     elif 'Modificar' == update.message.text:
         pass
     elif 'Eliminar' == update.message.text:

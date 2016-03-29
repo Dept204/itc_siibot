@@ -24,6 +24,7 @@ def help(bot, update):
 
 
 def handler(bot, update):
+    db.r_message.set(update.message.chat_id, update.message.text)
     tmpuser = User(update.message.chat_id)
     if 'sii' in update.message.text:
         send_message(bot, update, tmpuser.command(update.message.text.replace('sii ', '')))
@@ -52,6 +53,7 @@ def config(bot, update):
 
 
 def last_message(bot, update):
+    print db.r_message.get(update.message.chat_id)
     send_message(bot, update, db.r_message.get(update.message.chat_id))
 
 

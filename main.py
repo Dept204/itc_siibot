@@ -6,6 +6,8 @@ from user import User
 
 # For call
 siitag = '/configsii '
+# Keyboards
+k = Keyboards()
 
 
 def start(bot, update):
@@ -13,8 +15,7 @@ def start(bot, update):
 
 
 def help(bot, update):
-    reply_markup = Keyboards.get_keyboard("basic")
-    bot.sendMessage(update.message.chat_id, text='Ayuda', reply_markup=reply_markup)
+    bot.sendMessage(update.message.chat_id, text='Ayuda', reply_markup=k.get_keyboard("basic"))
 
 
 def handler(bot, update):

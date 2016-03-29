@@ -28,8 +28,10 @@ def handler(bot, update):
 
 
 def config(bot, update):
-    show_keyboard(bot, update, k.get_keyboard('config'))
-    print update.message.text
+    if update.message.text == 'Datos de acceso':
+        show_keyboard(bot, update, k.get_keyboard('config_a'), '¿Qué desea hacer?')
+    else:
+        show_keyboard(bot, update, k.get_keyboard('config'))
 
 
 def config_sii(bot, update):
@@ -72,6 +74,7 @@ def main():
     dp.addTelegramCommandHandler("help", help)
     dp.addTelegramCommandHandler("configsii", config_sii)
     dp.addTelegramCommandHandler("config", config)
+    dp.addTelegramCommandHandler("Datos de acceso", config)
 
     # on noncommand i.e message - echo the message on Telegram
     # dp.addTelegramInlineHandler(inlinequery)

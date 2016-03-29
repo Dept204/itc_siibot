@@ -5,7 +5,8 @@ class Keyboards:
     def __init__(self):
         self.keyboards = dict()
         self.keyboards['basic'] = [['Iniciar', 'Ayuda'], ['Configurar SII']]
-        self.keyboards['config'] = [['Datos de Acceso']]
+        self.keyboards['config'] = [['Datos de acceso']]
+        self.keyboards['config_a'] = [['Definir', 'Modificar', 'Eliminar']]
 
     def get_keyboard(self, key):
         """

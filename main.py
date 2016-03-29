@@ -2,17 +2,21 @@
 from telegram.ext import Updater
 from keyboards import Keyboards
 from telegram import ForceReply
-import os
 from user import User
+from redis_handler import Redis
+import os
 
 # For call
 siitag = '/configsii '
 # Keyboards
 k = Keyboards()
+# Redis db handler
+db = Redis()
 
 
 def start(bot, update):
     bot.sendMessage(update.message.chat_id, text="Bot para el SII (No Oficial) del ITC")
+    db.r_message.set(update.message.chat_id, '/start', 3600, nx=True)
 
 
 def help(bot, update):
@@ -37,6 +41,7 @@ def handler(bot, update):
     else:
         send_message(bot, update,
                      "Para una lista completa de ayuda, escriba <b>help</b>, para ayuda específica sobre un comando, escriba <b>help comando</b>")
+    db.r_message.set(update.message.chat_id, '/start', 3600, xx=True)
 
 
 def config(bot, update):
@@ -44,6 +49,10 @@ def config(bot, update):
         show_keyboard(bot, update, k.get_keyboard('config_a'), '¿Qué desea hacer?')
     else:
         show_keyboard(bot, update, k.get_keyboard('config'))
+
+
+def last_message(bot, update):
+    send_message(bot, update, db.r_message.get(update.message.chat_id))
 
 
 def config_sii(bot, update):
@@ -90,6 +99,7 @@ def main():
     dp.addTelegramCommandHandler("help", help)
     dp.addTelegramCommandHandler("configsii", config_sii)
     dp.addTelegramCommandHandler("config", config)
+    dp.addTelegramCommandHandler("last_message", last_message)
 
     # on noncommand i.e message - echo the message on Telegram
     # dp.addTelegramInlineHandler(inlinequery)
